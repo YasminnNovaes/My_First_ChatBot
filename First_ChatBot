@@ -1,0 +1,390 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "toc_visible": true,
+      "authorship_tag": "ABX9TyMT7Ngs8cvobgOImJyHK9fJ",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/YasminnNovaes/My_First_ChatBot/blob/main/First_ChatBot\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "Instalando o SDK do google"
+      ],
+      "metadata": {
+        "id": "bMWY5FbbbtwX"
+      }
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "SJe--bQhUhhg"
+      },
+      "outputs": [],
+      "source": [
+        "!pip install -q -U google-generativeai"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# Import the Python SDK\n",
+        "import google.generativeai as genai\n",
+        "\n",
+        "GOOGLE_API_KEY=\"AIzaSyDPJ7_7FSfjm5P9pZoEafDv9s3ITUsQEdI\"\n",
+        "genai.configure(api_key=GOOGLE_API_KEY)"
+      ],
+      "metadata": {
+        "id": "dv6nkocTb8LW"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "Listar os Modelos disponiveis"
+      ],
+      "metadata": {
+        "id": "tQ-VXGZscMmR"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "for m in genai.list_models():\n",
+        "  if 'generateContent' in m.supported_generation_methods:\n",
+        "    print(m.name)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 138
+        },
+        "id": "cpti7aogcLbP",
+        "outputId": "6aef109a-9f5e-45c9-bfb3-e638179558af"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "models/gemini-1.0-pro\n",
+            "models/gemini-1.0-pro-001\n",
+            "models/gemini-1.0-pro-latest\n",
+            "models/gemini-1.0-pro-vision-latest\n",
+            "models/gemini-1.5-pro-latest\n",
+            "models/gemini-pro\n",
+            "models/gemini-pro-vision\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "Listar as configurações de temperatura"
+      ],
+      "metadata": {
+        "id": "tDoZ2RrygX3l"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "generation_config = {\n",
+        "    \"candidate_count\": 1,\n",
+        "    \"temperature\":0.5,\n",
+        "}"
+      ],
+      "metadata": {
+        "id": "h7FhPQiDe6Eu"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "Listar as configurações safety"
+      ],
+      "metadata": {
+        "id": "NRvofleegiVQ"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "safety_settings = {\n",
+        "    \"HARASSMENT\": \"BLOCK_NONE\",\n",
+        "    \"HATE\": \"BLOCK_NONE\",\n",
+        "    \"SEXUAL\": \"BLOCK_NONE\",\n",
+        "    \"DANGEROUS\": \"BLOCK_NONE\",\n",
+        "}"
+      ],
+      "metadata": {
+        "id": "-m-O2crVfXjl"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "Inicializando o modelo"
+      ],
+      "metadata": {
+        "id": "lLsngUorg1tH"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "model = genai.GenerativeModel(model_name=\"gemini-1.0-pro\",\n",
+        "                              generation_config=generation_config,\n",
+        "                              safety_settings=safety_settings)"
+      ],
+      "metadata": {
+        "id": "jAWwwb3Sg37e"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "DjDR4IS6kIYj"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "j51mcrLD4Y2W",
+        "outputId": "3dfc3f03-0124-4557-9da2-0220796816cd",
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 662
+        }
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "**Introdução à IA**\n",
+            "\n",
+            "* O que é IA?\n",
+            "* Tipos de IA: aprendizado de máquina, aprendizado profundo, processamento de linguagem natural\n",
+            "* Aplicações da IA em vários setores\n",
+            "\n",
+            "**Aprendizado de Máquina**\n",
+            "\n",
+            "* Tipos de algoritmos de aprendizado de máquina: supervisionado, não supervisionado, por reforço\n",
+            "* Modelos de aprendizado de máquina: regressão, classificação, agrupamento\n",
+            "* Avaliação de modelos de aprendizado de máquina\n",
+            "\n",
+            "**Aprendizado Profundo**\n",
+            "\n",
+            "* Redes neurais: arquitetura, tipos e treinamento\n",
+            "* Convolutional Neural Networks (CNNs) para processamento de imagem\n",
+            "* Recurrent Neural Networks (RNNs) para processamento de linguagem\n",
+            "\n",
+            "**Processamento de Linguagem Natural (PNL)**\n",
+            "\n",
+            "* Fundamentos de PNL: tokenização, análise sintática, análise semântica\n",
+            "* Modelos de PNL: processamento de texto, geração de texto, tradução automática\n",
+            "* Aplicações de PNL: chatbots, resumos automáticos, reconhecimento de fala\n",
+            "\n",
+            "**Ética e Implicações Sociais da IA**\n",
+            "\n",
+            "* Viés e discriminação em algoritmos de IA\n",
+            "* Privacidade e segurança na era da IA\n",
+            "* O impacto da IA no emprego e na sociedade\n",
+            "\n",
+            "**Recursos Adicionais**\n",
+            "\n",
+            "* Cursos online: Coursera, edX, Udemy\n",
+            "* Livros: \"Inteligência Artificial: Uma Abordagem Moderna\" por Stuart Russell e Peter Norvig, \"Aprendizado Profundo\" por Ian Goodfellow, Yoshua Bengio e Aaron Courville\n",
+            "* Artigos de pesquisa: arXiv, Google Scholar\n",
+            "* Conferências e workshops: NeurIPS, ICML, CVPR\n"
+          ]
+        }
+      ],
+      "source": [
+        "response = model.generate_content(\"Vamos aprender conteudo sobre IA. Me dê sugestões.\")\n",
+        "print(response.text)"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "chat = model.start_chat(history=[])"
+      ],
+      "metadata": {
+        "id": "DfYlBnHvkbAl"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "prompt = input(\"esperando prompt: \")\n",
+        "\n",
+        "while prompt != \"fim\":\n",
+        "  response =chat.send_message(prompt)\n",
+        "  print(\"resposta: \", response.text, \"\\n\")\n",
+        "  prompt = input(\"esperando promt: \")"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 138
+        },
+        "id": "ljanRlS_kvWe",
+        "outputId": "67be14b2-73dc-4691-aaf1-c48601ca0392"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "name": "stdout",
+          "output_type": "stream",
+          "text": [
+            "esperando promt: qual a capital de toquio?\n",
+            "resposta:  Tóquio \n",
+            "\n",
+            "esperando promt: qual a comida tipica desse pais?\n",
+            "resposta:  Sushi \n",
+            "\n",
+            "esperando promt: fim\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#Melhorando a visualização\n",
+        "#Código disponível em https://ai.google.dev/tutorials/python_quickstart#import_packages\n",
+        "import textwrap\n",
+        "from IPython.display import display\n",
+        "from IPython.display import Markdown\n",
+        "\n",
+        "def to_markdown(text):\n",
+        "  text = text.replace('•', '  *')\n",
+        "  return Markdown(textwrap.indent(text, '> ', predicate=lambda _: True))\n",
+        "\n",
+        "#Imprimindo o histórico\n",
+        "for message in chat.history:\n",
+        "  display(to_markdown(f'**{message.role}**: {message.parts[0].text}'))\n",
+        "  print('-------------------------------------------')"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 268
+        },
+        "id": "okqV1RmNn7g9",
+        "outputId": "6f726107-c1c7-43cb-9f00-39c80113f5fe"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "display_data",
+          "data": {
+            "text/plain": [
+              "<IPython.core.display.Markdown object>"
+            ],
+            "text/markdown": "> **user**: qual a capital de toquio?"
+          },
+          "metadata": {}
+        },
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "-------------------------------------------\n"
+          ]
+        },
+        {
+          "output_type": "display_data",
+          "data": {
+            "text/plain": [
+              "<IPython.core.display.Markdown object>"
+            ],
+            "text/markdown": "> **model**: Tóquio"
+          },
+          "metadata": {}
+        },
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "-------------------------------------------\n"
+          ]
+        },
+        {
+          "output_type": "display_data",
+          "data": {
+            "text/plain": [
+              "<IPython.core.display.Markdown object>"
+            ],
+            "text/markdown": "> **user**: qual a comida tipica desse pais?"
+          },
+          "metadata": {}
+        },
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "-------------------------------------------\n"
+          ]
+        },
+        {
+          "output_type": "display_data",
+          "data": {
+            "text/plain": [
+              "<IPython.core.display.Markdown object>"
+            ],
+            "text/markdown": "> **model**: Sushi"
+          },
+          "metadata": {}
+        },
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "-------------------------------------------\n"
+          ]
+        }
+      ]
+    }
+  ]
+}
